@@ -23,10 +23,11 @@
 
      <!-- Navigation Tabs -->
      <quasar-tabs slot="navigation" class="primary  shadow-2">
-    <quasar-tab icon="mail" v-link="{path: '/view-panels', exact: true}">Panels</quasar-tab>
-    <quasar-tab icon="alarm" v-link="{path: '/view-sortable', exact: true}">Sortable</quasar-tab>
-    <quasar-tab icon="help" v-link="{path: '/view-editor', exact: true}">Editor</quasar-tab>
-  </quasar-tabs>
+      <quasar-tab icon="mail" v-link="{path: '/view-panels', exact: true}">Panels</quasar-tab>
+      <quasar-tab icon="alarm" v-link="{path: '/view-sortable', exact: true}">Sortable</quasar-tab>
+      <quasar-tab icon="help" v-link="{path: '/view-editor', exact: true}">Editor</quasar-tab>
+    </quasar-tabs>
+
      <!-- Left side Drawer -->
      <!--
       <quasar-drawer>
@@ -43,7 +44,7 @@
 
      <!-- FABS -->
 
-     <div class="column items-top" style="margin-top: 100px; margin-bottom: 100px;">
+     <div class="column items-top" style="margin-top: 100px; margin-bottom: 100px;z-index:10;">
         <quasar-fab type="indigo" icon="collections" direction="right">
           <quasar-small-fab class="white" @click="toast('mail')">mail</quasar-small-fab>
           <quasar-small-fab class="white" @click="toast('alarm')">alarm</quasar-small-fab>
@@ -62,10 +63,9 @@
         </quasar-fab>
       </div>
 
-    <!-- Replace "div" with "router-view" if using subRoutes -->
-    <!-- <div class="layout-view no-scroll"> -->
+      <!-- Replace "div" with "router-view" if using subRoutes -->
+      <!-- <div class="layout-view no-scroll"> -->
       <router-view></router-view>
-
 
   </quasar-layout>
 </template>

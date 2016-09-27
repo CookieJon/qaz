@@ -8,7 +8,8 @@
     <div class="layout-padding">
       <!-- if you want automatic padding -->
       Panels
-      <j-panel title='Hi there!'>HI</j-panel>
+      <j-panel title='Images'>HI</j-panel>
+      <j-panel title='Filters'>HI</j-panel>
     </div>
   </div>
 </template>
