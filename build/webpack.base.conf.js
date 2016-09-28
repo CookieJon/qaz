@@ -73,6 +73,9 @@ module.exports = {
           name: 'fonts/[name].[hash:7].[ext]'
         }
       }
+      // ,
+      // { test: /jquery-mousewheel/, loader: "imports?define=>false&this=>window" },
+      // { test: /malihu-custom-scrollbar-plugin/, loader: "imports?define=>false&this=>window" }
     ]
   },
   eslint: {

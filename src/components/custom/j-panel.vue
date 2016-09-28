@@ -1,6 +1,5 @@
 <template>
 
-
   <div class='j-panel' v-bind:style='style_panel'>
     <header>
       Header
@@ -8,8 +7,30 @@
     <header>
       Header
     </header>    
-    <div class='content'>
-      Content
+    <div class='content' v-el:content>
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />
+      Content<br />      
     </div>
     <footer>
       Footer
@@ -52,14 +73,14 @@
 
 <script>
   var $ = require('jquery')
+  require('jquery-mousewheel')
+  require('malihu-custom-scrollbar-plugin')
   require('jquery-ui/draggable')
   require('jquery-ui/resizable')
   require('jquery-ui-css/core.css')
   require('jquery-ui-css/theme.css')
   require('jquery-ui-css/draggable.css')
   require('jquery-ui-css/resizable.css')
-
-  // var Ps = require('perfect-scrollbar')
   export default {
     props: {
       title: {
@@ -77,7 +98,10 @@
     ready () {
       var self = this
       var $el = $(self.$el)
-      // var content = self.$els.jPanelContent
+      var $content = $(self.$els.content)
+      $content.mCustomScrollbar({
+        theme: 'dark'
+      })
       // Make Draggable
       console.log($(this.$el))
       $el
@@ -112,18 +136,24 @@
     position absolute
     display flex
     flex-direction column
-    border 1px solid green
+    overflow hidden
+    border-radius 2px !important
     & > header
       min-height 32px
-      border 1px solid yellow
+      background $primary
+      color white
+      shadow 6px 6px black
     & > .content
       flex-grow 1
+      width 200px
+      height 400px
+      overflow auto
+      background white
     & > footer
       min-height 32px
-      border 1px solid pink
-
-
-
+      background $primary-dark
+      color white
+      
   div.jx-panel
     position absolute
     -webkit-backdrop-filter blur(4px)
