@@ -1,18 +1,27 @@
 <template>
 
-  <div class='j-panel'
-    v-bind:style='style_panel'>
 
-      <!--<div class='card-title'>
-          <i>drag_handle</i>
-        <div class='title'>{{ title }}</div>
-      </div>-->
+  <div class='j-panel' v-bind:style='style_panel'>
+    <header>
+      Header
+    </header>
+    <header>
+      Header
+    </header>    
+    <div class='content'>
+      Content
+    </div>
+    <footer>
+      Footer
+    </footer>
+  </div>
+<!--
       <div class='j-panel-header'>
-        <div class='j-panel-title text-white bg-primary shadow-2'>
+        <div class='j-panel-title'>
           <i>drag_handle</i>
           <span class='title'>{{ title }}</span>
         </div>        
-        <div class='j-panel-toolbar text-white bg-light-primary shadow-2'>
+        <div class='j-panel-toolbar'>
           <button class='small'> 
             <i>gradient</i>
           </button>
@@ -21,11 +30,9 @@
           </button>        
         </div>
       </div>
-
-      <div  class='j-panel-content '
-            v-el:j-panel-content>
-         
-        <div class="card">
+      <div  class='j-panel-content'>
+          asdasdasdad
+        <!--<div class="card">
           <div class="card-title">
             $data
           </div>
@@ -40,7 +47,7 @@
         
       </div>    
     </div>
- 
+    -->
 </template>
 
 <script>
@@ -52,14 +59,8 @@
   require('jquery-ui-css/draggable.css')
   require('jquery-ui-css/resizable.css')
 
-  require('jspanel3')
-
-  var Ps = require('perfect-scrollbar')
-
-
-
+  // var Ps = require('perfect-scrollbar')
   export default {
-    
     props: {
       title: {
         type: String
@@ -68,15 +69,15 @@
     data () {
       return {
         style_panel: {
-          width: '200px',
-          height: '400px'
+          width: '300px',
+          height: '380px'
         }
       }
     },
     ready () {
       var self = this
       var $el = $(self.$el)
-      var content = self.$els.jPanelContent
+      // var content = self.$els.jPanelContent
       // Make Draggable
       console.log($(this.$el))
       $el
@@ -98,7 +99,6 @@
             $el.addClass('shadow-2')
           }
         })
-      Ps.initialize(content)
     }
 }
 </script>
@@ -107,9 +107,26 @@
 
   @import '../../themes/app.variables.styl'
   
+
   div.j-panel
     position absolute
-    background pink
+    display flex
+    flex-direction column
+    border 1px solid green
+    & > header
+      min-height 32px
+      border 1px solid yellow
+    & > .content
+      flex-grow 1
+    & > footer
+      min-height 32px
+      border 1px solid pink
+
+
+
+  div.jx-panel
+    position absolute
+    -webkit-backdrop-filter blur(4px)
     & > .j-panel-header
       width 100%
       height 1.95rem
@@ -120,12 +137,19 @@
       color white
     & > .j-panel-content
       position relative
-      background-color $lighterPrimary
+      background white
+      overflow scroll
+      top 0
+      bottom 0
     & > .jpanel-footer
       background-color $lighterPrimary
 
+
 </style>
 //
+.bg-glass
+  background rgba(30, 30, 30, .3)
+  backdrop-filter grayscale(100%) blur(4px)
 //    // Make Resizable
 //    $el.resizable({
 //      ghost: true,

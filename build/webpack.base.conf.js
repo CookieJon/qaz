@@ -24,6 +24,7 @@ module.exports = {
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
       'components': path.resolve(__dirname, '../src/components'),
+      'modules':  path.resolve(__dirname, '../node_modules'),
       'jquery':  path.resolve(__dirname, '../node_modules/jquery'),
       'jquery-ui': path.resolve(__dirname, '../node_modules/jquery-ui/ui/widgets'),
       'jquery-ui-css': path.resolve(__dirname, '../node_modules/jquery-ui/themes/base')

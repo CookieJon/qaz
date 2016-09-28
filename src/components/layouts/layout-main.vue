@@ -65,7 +65,7 @@
 
       <!-- Replace "div" with "router-view" if using subRoutes -->
       <!-- <div class="layout-view no-scroll"> -->
-      <router-view></router-view>
+      <router-view  keep-alive></router-view>
 
   </quasar-layout>
 </template>
