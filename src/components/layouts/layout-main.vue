@@ -43,27 +43,15 @@
     -->
 
      <!-- FABS -->
-
      <div class="column items-top" style="margin-top: 100px; margin-bottom: 100px;z-index:10;">
         <quasar-fab type="indigo" icon="collections" direction="right">
           <quasar-small-fab class="white" @click="toast('mail')">mail</quasar-small-fab>
           <quasar-small-fab class="white" @click="toast('alarm')">alarm</quasar-small-fab>
         </quasar-fab>
-        <quasar-fab :type="['pink', 'glossy']" icon="keyboard_arrow_down" direction="right">
-          <quasar-small-fab class="white" @click="toast('mail')">mail</quasar-small-fab>
-          <quasar-small-fab class="white" @click="toast('alarm')">alarm</quasar-small-fab>
-        </quasar-fab>
-        <quasar-fab :type="['blue', 'glossy']" icon="keyboard_arrow_right" direction="right">
-          <quasar-small-fab class="white" @click="toast('mail')">mail</quasar-small-fab>
-          <quasar-small-fab class="white" @click="toast('alarm')">alarm</quasar-small-fab>
-        </quasar-fab>
-        <quasar-fab backdrop type="red push" icon="keyboard_arrow_right" direction="right">
-          <quasar-small-fab class="primary" @click="toast('mail')">mail</quasar-small-fab>
-          <quasar-small-fab class="white" @click="toast('alarm')">alarm</quasar-small-fab>
-        </quasar-fab>
       </div>
 
-      <!-- Replace "div" with "router-view" if using subRoutes -->
+
+
       <!-- <div class="layout-view no-scroll"> -->
       <router-view  keep-alive></router-view>
 
@@ -78,8 +66,6 @@ export default {
   }
 }
 </script>
-
-
 
 <style lang="stylus">
 

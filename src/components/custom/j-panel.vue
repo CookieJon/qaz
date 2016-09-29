@@ -1,36 +1,9 @@
 <template>
 
   <div class='j-panel' v-bind:style='style_panel'>
-    <header>
-      Header
-    </header>
-    <header>
-      Header
-    </header>    
-    <div class='content' v-el:content>
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />
-      Content<br />      
+    <header>{{ title }}</header>
+    <div class='content' v-el:content >
+      <slot>MT</slot>
     </div>
     <footer>
       Footer
@@ -99,6 +72,7 @@
       var self = this
       var $el = $(self.$el)
       var $content = $(self.$els.content)
+      // $content = $el
       $content.mCustomScrollbar({
         theme: 'dark'
       })
@@ -107,13 +81,7 @@
       $el
         .resizable()
         .draggable({
-          // stack: '.card',
-          // handle: '.drag-handle',
-          // snap: true,
-          // grid: [50, 50],
-          // opacity: 0.45,
-          // snapMode: 'outer',	// inner outer both
-          // snapTolerance: 5,
+          handle: 'header',
           start: function (event, ui) {
             $el.removeClass('shadow-2')
             $el.addClass('shadow-4')
@@ -127,74 +95,35 @@
 }
 </script>
 
+<style src="malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"></style>
+
 <style lang='styl'>
 
   @import '../../themes/app.variables.styl'
   
-
   div.j-panel
     position absolute
     display flex
     flex-direction column
     overflow hidden
     border-radius 2px !important
+    font-size 12px
+    min-width 300px
+    background pink
     & > header
       min-height 32px
+      padding 4px
       background $primary
       color white
       shadow 6px 6px black
     & > .content
-      flex-grow 1
-      width 200px
-      height 400px
       overflow auto
-      background white
+      flex-grow 1
+      background lemonchiffon
     & > footer
       min-height 32px
       background $primary-dark
       color white
-      
-  div.jx-panel
-    position absolute
-    -webkit-backdrop-filter blur(4px)
-    & > .j-panel-header
-      width 100%
-      height 1.95rem
-      padding .2rem
-      line-height 1.5rem
-      font-size .95rem
-      background-color $primary
-      color white
-    & > .j-panel-content
-      position relative
-      background white
-      overflow scroll
-      top 0
-      bottom 0
-    & > .jpanel-footer
-      background-color $lighterPrimary
 
 
 </style>
-//
-.bg-glass
-  background rgba(30, 30, 30, .3)
-  backdrop-filter grayscale(100%) blur(4px)
-//    // Make Resizable
-//    $el.resizable({
-//      ghost: true,
-//      // animate: true,
-//      // animateDuration: 'fast',
-//      // animateEasing: 'easeOutBounce',
-//      // grid: [10, 10],
-//      containment: $('body'),
-//      // autoHide: true,
-//      handles: 'all',
-//      helper: '.resizable-helper'
-//    })
-    // $(function () {
-    //   //  console.log($(self.$el).draggable())
-    // })
-   // Interact('.card').draggable()
- // }
-
