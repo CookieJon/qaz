@@ -1,9 +1,24 @@
 <template>
+  <!--
+  
+    # j-panel - container of a model.
+
+    - width/height
+    - draggable
+    - resizable
+    - expand/collapse
+    - maximise/minimise
+
+    - Form of: 
+      -  draggable / collapsible panel 
+      -  list item - horizontal / vertical
+
+  -->
 
   <div class='j-panel' v-bind:style='style_panel'>
     <header>{{ title }}</header>
-    <div class='content' v-el:content >
-      <slot>MT</slot>
+    <div class='content' v-el:content>
+      <slot></slot>
     </div>
     <footer>
       Footer
@@ -44,8 +59,9 @@
     -->
 </template>
 
-<script>
+<script type='text/javascript'>
   var $ = require('jquery')
+  
   require('jquery-mousewheel')
   require('malihu-custom-scrollbar-plugin')
   require('jquery-ui/draggable')
@@ -58,6 +74,12 @@
     props: {
       title: {
         type: String
+      },
+      x: {
+        default: 88
+      },
+      y: {
+        default: 88
       }
     },
     data () {
@@ -68,10 +90,15 @@
         }
       }
     },
+    created () {
+      console.log('Created')
+      console.log(this)
+      this.style_panel.x = this.x
+    },
     ready () {
-      var self = this
-      var $el = $(self.$el)
-      var $content = $(self.$els.content)
+      var vm = this
+      var $el = $(vm.$el)
+      var $content = $(vm.$els.content)
       // $content = $el
       $content.mCustomScrollbar({
         theme: 'dark'
@@ -79,6 +106,7 @@
       // Make Draggable
       console.log($(this.$el))
       $el
+        .css({left: this.x + 'px', top: this.y + 'px'})
         .resizable()
         .draggable({
           handle: 'header',
@@ -100,7 +128,7 @@
 <style lang='styl'>
 
   @import '../../themes/app.variables.styl'
-  
+
   div.j-panel
     position absolute
     display flex
@@ -109,7 +137,7 @@
     border-radius 2px !important
     font-size 12px
     min-width 300px
-    background pink
+    background white
     & > header
       min-height 32px
       padding 4px
@@ -119,7 +147,7 @@
     & > .content
       overflow auto
       flex-grow 1
-      background lemonchiffon
+      background $tertiary
     & > footer
       min-height 32px
       background $primary-dark

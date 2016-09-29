@@ -1,0 +1,12 @@
+<j-panel v-for="(listName, list) in lists" :title='listName' :x="$index * 150">
+    <div class="panel-toolbar">
+        <button><i>document</i></button>
+    </div>
+
+    <ul v-dnd-list :dnd-list="list" :dnd-horizontal-list="false">
+        <li v-dnd-draggable v-for="item in list" :dnd-draggable="item" :dnd-index="$index" :dnd-data="list" dnd-selected="selectedEvent" dnd-effect-allowed="move" v-bind:class="{'selected': selected === item}">
+            {{item.label}}
+        </li>
+        <li class="dndPlaceholder red">Custom placeholder</li>
+    </ul>
+</j-panel>

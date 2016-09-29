@@ -1,66 +1,96 @@
 <template>
   <!-- root node required -->
   <div>
-   
-
 
     <!-- your content -->
     <div class="layout-padding">
-      <!-- if you want automatic padding -->
-      Panels
+     
+     
+     
 
-      <div v-for="(listName, list) in lists" class="col-md-4">
-        <div class="card" style="max-width:300px;">
-          <div class="card-title bg-light-primary">List {{listName}}</div>
-          <div class="card-content card-force-top-padding">
-            <ul v-dnd-list :dnd-list="list" :dnd-horizontal-list="false">
-              <li v-dnd-draggable v-for="item in list" :dnd-draggable="item" :dnd-index="$index" :dnd-data="list" dnd-selected="selectedEvent"
-                dnd-effect-allowed="move" v-bind:class="{'selected': selected === item}">
-                {{item.label}}
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+      <!-- if you want automatic padding -->
+      Panels 
+<!-- Tokens; alternative: Chips -->
+<span class="token">Some token</span>
+      <j-panel v-for="(listName, list) in lists" :title='listName' :x='$index * 220' :y='$index * 50' >
+
+          <div class="panel-item type-toolbar">
+              <button class=" text-white small"><i>dns</i></button>
+              <button class=" text-white small"><i>chrome_reader_mode</i></button>
+              <button class=" text-white small"><i>donut_small</i></button>
+              <button class=" text-white small"><i>extension</i></button>
+          </div>
+
+     
+           <div class="list">
+              <div class="list-label">Single Selection</div>
+              <div class="item multiple-lines">
+                <i class="item-primary">supervisor_account</i>
+                <div class="item-content">
+                  <quasar-select
+                    class="full-width"
+                    type="radio"
+                    :model.sync="jon"
+                    :options="[{ label:'Cyrano H Welles', value: 1}, { label:'Ferdinand Zelda', value: 2}, { label:'Rarebit Koenig II', value: 3}]"
+                  ></quasar-select>
+                </div>
+            </div>
+            <div class="item two-lines">
+              <i class="item-primary">local_atm</i>
+              <div class="item-content">
+                <quasar-double-range
+                  :model-min.sync="modelMin"
+                  :model-max.sync="modelMax"
+                  :min="0" :max="50" label
+                ></quasar-double-range>
+              </div>
+            </div>            
+            <div class="item two-lines">
+              <i class="item-primary">edit</i>
+              <div class="item-content">
+                <span class="item-label">Number: </span>
+                <quasar-numeric :model.sync="number"></quasar-numeric>
+              </div>
+            </div>
+
+          </div>
+
+
+             
+        
+        
+      
+          <ul v-dnd-list :dnd-list="list" :dnd-horizontal-list="false">
+              <li v-dnd-draggable v-for="item in list" :dnd-draggable="item" :dnd-index="$index" :dnd-data="list" dnd-selected="selectedEvent" dnd-effect-allowed="move" v-bind:class="{'selected': selected === item}">
+                  {{item.label}}
               </li>
               <li class="dndPlaceholder red">Custom placeholder</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+          </ul>
+          
+      </j-panel>
 
       <!-- #data -->
-      <j-panel title='Debug'>
-        <pre style="font-size:10px;line-height:10px;">{{ $data | json 2 }}</pre>
-      </j-panel>
-
-      <!-- ** dnd list -->
-      <j-panel title='VUE DND' >
-
-      </j-panel>
-
-      <j-panel :title='listName' v-for="(listName, list) in lists">
-        <ul class="sortable">
-          <li v-for="item in list" class="sortable-element"><i>menu</i> {{ item.label }}</li>
-        </ul>
+      <j-panel title='Debug' >
+        <pre class='text-dark' style="font-size:10px;line-height:10px;">{{ $data | json 2 }}</pre>
       </j-panel>
 
 
-  <!-- ** dnd list -->
-      <!--
-      <div v-for="(listName, list) in lists" class="col-md-4">
-        <j-panel :title='listName'>
-          <div class="card-title bg-light-primary">List {{listName}}</div>
-          <div class="card-content card-force-top-padding">
-            <ul v-dnd-list :dnd-list="list" :dnd-horizontal-list="false">
-              <li v-dnd-draggable v-for="item in list" :dnd-draggable="item" :dnd-index="$index" :dnd-data="list" dnd-selected="selectedEvent"
-                dnd-effect-allowed="move" v-bind:class="{'selected': selected === item}">
-                {{item.label}}
-              </li>
-              <li class="dndPlaceholder red">Custom placeholder</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      -->
+    </div><!-- your content -->
 
-    </div>
-  </div>
+  </div><!-- root node required -->
+
 </template>
 
 <script>
@@ -80,6 +110,17 @@ var jPanel = require('components/custom/j-panel')
 export default {
   data () {
     return {
+      'jon': 1,
+      'bitmaps': {
+        '001': {
+          type: 'bitmap',
+          name: 'untitled',
+          src: 'image.bm',
+          tags: ['arty', 'photo', 'spooky', 'b&w', 'face', 'people']
+        }
+      },
+      'artworks': {
+      },
       'selected': null,
       'lists': {
         'List A': [
@@ -140,9 +181,11 @@ export default {
 </script>
 
 <style>
+  
+  
   .sortable { list-style-type: none; margin: 0; padding: 0; width: 100%; }
   .sortable-element {
-     border:0px;margin: 4px; height:32px; 
+     border:0px;margin: 4px; height:32px;
      font-size:14px; 
      padding:4px;text-align:left; cursor:pointer;
      box-shadow: 0px 3px 3px 0px #aaaaaa;

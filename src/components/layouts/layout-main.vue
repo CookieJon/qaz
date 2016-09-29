@@ -52,8 +52,8 @@
 
 
 
-      <!-- <div class="layout-view no-scroll"> -->
-      <router-view  keep-alive></router-view>
+      <!-- <div class="layout-view no-scroll">keep-alive>-->
+      <router-view keep-alive> </router-view>
 
   </quasar-layout>
 </template>
