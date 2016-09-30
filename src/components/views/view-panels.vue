@@ -24,7 +24,7 @@
       Panels 
 <!-- Tokens; alternative: Chips -->
 <span class="token">Some token</span>
-      <j-panel v-for="(listName, list) in lists" :title='listName' :x='$index * 220' :y='$index * 50' >
+      <j-panel v-for="(listName, list) in lists" :title='listName' :x='$index * 340  + 20' :y='40' >
 
           <div class="panel-item type-toolbar">
               <button class=" text-white small"><i>dns</i></button>
@@ -39,6 +39,7 @@
               <div class="item multiple-lines">
                 <i class="item-primary">supervisor_account</i>
                 <div class="item-content">
+                <span class="item-label">Username</span>
                   <quasar-select
                     class="full-width"
                     type="radio"
@@ -50,15 +51,25 @@
             <div class="item two-lines">
               <i class="item-primary">local_atm</i>
               <div class="item-content">
+                <span class="item-label">Username</span>
                 <quasar-double-range
-                  :model-min.sync="modelMin"
-                  :model-max.sync="modelMax"
-                  :min="0" :max="50" label
+                  :model-min.sync="test_range.min"
+                  :model-max.sync="test_range.max"
+                  :min="0" :max="100" label
+                ></quasar-double-range>
+              </div>
+            </div>
+            <div class="item multiple-lines">
+              <div class="item-content">
+                <span class="item-label">Number: </span>
+                <quasar-double-range
+                  :model-min.sync="test_range.min"
+                  :model-max.sync="test_range.max"
+                  :min="0" :max="100" label
                 ></quasar-double-range>
               </div>
             </div>            
-            <div class="item two-lines">
-              <i class="item-primary">edit</i>
+            <div class="item multiple-lines">
               <div class="item-content">
                 <span class="item-label">Number: </span>
                 <quasar-numeric :model.sync="number"></quasar-numeric>
@@ -82,7 +93,7 @@
       </j-panel>
 
       <!-- #data -->
-      <j-panel title='Debug' >
+      <j-panel title='Debug' x="20" y="400" >
         <pre class='text-dark' style="font-size:10px;line-height:10px;">{{ $data | json 2 }}</pre>
       </j-panel>
 
@@ -110,6 +121,7 @@ var jPanel = require('components/custom/j-panel')
 export default {
   data () {
     return {
+      'test_range': { min: 10, max: 90 },
       'jon': 1,
       'bitmaps': {
         '001': {

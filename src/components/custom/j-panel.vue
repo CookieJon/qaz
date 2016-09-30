@@ -59,7 +59,8 @@
     -->
 </template>
 
-<script type='text/javascript'>
+<script type="javascript">
+  var state = require('./j-panel-state.js')
   var $ = require('jquery')
   
   require('jquery-mousewheel')
@@ -91,7 +92,8 @@
       }
     },
     created () {
-      console.log('Created')
+      console.log('Cr eat ed ' + state.state)
+      console.log('property = ' + this.title)
       console.log(this)
       this.style_panel.x = this.x
     },
