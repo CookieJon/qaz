@@ -1,3 +1,6 @@
+// Imports
+//
+// Quasar/Vue defaults
 import Vue from 'vue'
 import VueTouch from 'vue-touch'
 // import Vuex from 'vuex'
@@ -5,30 +8,30 @@ import VueTouch from 'vue-touch'
 import Quasar from 'quasar'
 import Router from './router'
 
+// Jon Custom additions
 import VueDragAndDropList from 'vue-drag-and-drop-list'
+import MaterialGoodies from './material-goodies.js'
 
-Vue.use(VueDragAndDropList)
+// Theme
+//
+require('./themes/app.' + __THEME + '.styl') // <-- Option 1. Override Quasar (custom styles/slower)
+// require('quasar/dist/quasar.' + __THEME + '.css') // <-- Option 2. Use Quasar defaults (no custom styles/fast)
 
-/*
-  If overriding Quasar style, leave uncommented
-  just the first line.
-
-  If NOT overriding Quasar style, leave uncommented
-  just the second line. This option make compiling faster.
-
-  WARNING!
-  Leave just one of the two require() calls below
-  uncommented.
- */
-require('./themes/app.' + __THEME + '.styl')   // 1. Overriding, or...
-// require('quasar/dist/quasar.' + __THEME + '.css') // 2. Not overriding
 Quasar.theme.set(__THEME)
 
+// Activate Plugins
+//
 Vue.use(VueTouch) // Touch events
 // Vue.use(Vuex) // State Management
 // Vue.use(VueResource) // Ajax Requests
 Vue.use(Quasar) // Install Quasar Framework
 
+Vue.use(VueDragAndDropList)
+console.log(MaterialGoodies)
+Vue.use(MaterialGoodies)
+
+// Start Quasar in '#quasar-app'
+//
 Quasar.start(() => {
   Router.start(Vue.extend({}), '#quasar-app')
 })

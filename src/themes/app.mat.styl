@@ -21,31 +21,39 @@ $toolbar-background         ?= $primary
 $toolbar-active-color       ?= $primary
 $toolbar-faded-color        ?= composite-color($primary)
 
-.bg-dark-primary
-	background-color $darkPrimary !important
+.bg-primary-dark
+	background-color $primary-dark !important
+	color $primary-text
 .bg-primary
 	background-color $primary !important
-.bg-light-primary
-	background-color $lightPrimary !important
-	color white
-.bg-lighterPrimary
-	background-color $lighterPrimary !important
-//
-//.dark-primary-color
-//  background-color $darkPrimary !important
-
+	color $primary-text
+.bg-primary-light
+	background-color $primary-light !important
+	color $primary-text
+.text-primary
+	color $primary-text !important
+.bg-accent
+	background-color $accent !important
+.text-accent
+	color $accent !important
+.text-1
+	color $text-1 !important
+.text-2
+	color $text-2 !important
+.bg-divider
+	border-color  $divider !important
 
 
 .layout
 	// padding 20px
 	// background #262524 none repeat scroll 0 0
-	background url("/statics/img/resource/bg/bg4.png") no-repeat 50% 0px
-	background-attachment fixed
-	/* background-color: #3F51B5; */
+	// background url("/statics/img/resource/bg/bg3.png") no-repeat 50% 0px
+	background-color: #3F51B5;
+	background-repeat no-repeat
+	background-position 50% 0
+	background-attachment fixed/
 	background-size cover/* cover || contain  */
 	overflow hidden
-	// -webkit-filter hue-rotate(90deg) 
-	
 
 .layout-view
 	overflow hidden

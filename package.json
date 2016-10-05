@@ -22,6 +22,7 @@
     "jquery": "^3.1.1",
     "jquery-mousewheel": "^3.1.13",
     "jquery-ui": "^1.12.1",
+    "jquery-ui-touch-punch": "^0.2.3",
     "jspanel3": "^3.3.1",
     "malihu-custom-scrollbar-plugin": "^3.1.5",
     "material-design-icons": "^3.0.1",
@@ -35,6 +36,7 @@
     "vue-drag-and-drop-list": "^0.8.1",
     "vue-resource": "^0.9.3",
     "vue-router": "^0.7.13",
+    "vue-scrollbar": "^1.0.4",
     "vue-touch": "^1.1.0",
     "vuex": "^1.0.0-rc.2"
   },
