@@ -167,7 +167,7 @@
           handles: 'all'
           // helper: '.resizable-helper'
         })
-        .on('mousedown', function () {
+        .on('mouseover', function () {
           console.log('mousedown', vm)
           vm.moveToFront()
         })
