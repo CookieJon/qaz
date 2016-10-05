@@ -1,12 +1,57 @@
-<j-panel v-for="(listName, list) in lists" :title='listName' :x="$index * 150">
-    <div class="panel-toolbar">
-        <button><i>document</i></button>
+<div class="layout">
+    <div class="layout-header">
+        <div slot="header" class="toolbar">
+            <button> <i>keyboard_arrow_left</i> </button>
+            <div class="toolbar-content">
+                <div class="toolbar-title padding-1">
+                    <div> Header </div>
+                </div>
+            </div>
+            <button><i>open_in_new</i></button>
+        </div>
+        <div slot="header" class="toolbar primary">
+            <div class="quasar-search primary">
+                <div class="quasar-search-input-container">
+                    <button class="quasar-search-icon"><i>search</i></button>
+                    <input type="text" class="quasar-search-input no-style" placeholder="Search">
+                    <button class="quasar-search-clear"><i class="mat-only">clear</i> <i class="ios-only">cancel</i></button>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <ul v-dnd-list :dnd-list="list" :dnd-horizontal-list="false">
-        <li v-dnd-draggable v-for="item in list" :dnd-draggable="item" :dnd-index="$index" :dnd-data="list" dnd-selected="selectedEvent" dnd-effect-allowed="move" v-bind:class="{'selected': selected === item}">
-            {{item.label}}
-        </li>
-        <li class="dndPlaceholder red">Custom placeholder</li>
-    </ul>
-</j-panel>
+    <div class="layout-content">
+        <div class="layout-view">
+            <div class="layout-padding">
+                <h1>Modal</h1>
+                <p>
+                    <button class="primary">Open Another Modal</button>
+                </p>
+                <br>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+                <p class="caption">This is a Modal presenting a Layout.</p>
+            </div>
+        </div>
+    </div>
+    <div class="layout-footer">
+        <div slot="footer" class="toolbar">
+            <div class="toolbar-content">
+                <div class="toolbar-title padding-1">
+                    <div> Footer </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

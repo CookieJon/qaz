@@ -79,7 +79,8 @@ module.exports = {
     ]
   },
   eslint: {
-    formatter: require('eslint-friendly-formatter')
+    formatter: require('eslint-friendly-formatter'),
+    fix: true
   },
   postcss: function () {
     return [autoprefixer]
