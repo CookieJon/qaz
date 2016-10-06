@@ -28,6 +28,14 @@
 -->
 <!-- Tokens; alternative: Chips -->
 
+          
+       <j-panel icon="upload" title="Some panel">
+         test
+       </j-panel>
+       <j-panel icon="upload" title="Some panel">
+         test
+       </j-panel>
+     
       <j-panel icon="shopping_cart" v-for="(listName, list) in lists" :title='listName' :x='$index * 340  + 20' :y='40' >
 
 
@@ -42,13 +50,13 @@
       <div slot="toolbar" class='j-panel-toolbar'>
            <!-- Tabs -->
           <quasar-tabs class="inverted dark">
-            <quasar-tab icon="mail" target="#tab-1" :goodies-ripple>
+            <quasar-tab icon="mail" target="#tab-1" v-goodies-ripple>
               Tab 1
             </quasar-tab>
-            <quasar-tab icon="mail" target="#tab-2" :goodies-ripple>
+            <quasar-tab icon="mail" target="#tab-2" v-goodies-ripple>
               Tab 2
             </quasar-tab>
-            <quasar-tab icon="alarm" target="#tab-3" :goodies-ripple>
+            <quasar-tab icon="alarm" target="#tab-3" v-goodies-ripple>
               Tab 3
             </quasar-tab> 
           </quasar-tabs>
@@ -173,6 +181,8 @@ require('jquery-ui-css/sortable.css')
 require('jquery-ui-css/resizable.css')
 var jPanel = require('components/custom/j-panel')
 
+var Bitmap = require('../../moe/moe.bitmap.js')
+console.log(Bitmap)
 export default {
   data () {
     return {
