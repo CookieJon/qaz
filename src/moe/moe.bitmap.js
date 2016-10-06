@@ -65,15 +65,15 @@ Bitmap.prototype = {
 
     // palette
     var length = bitCount === 0 ? 1 << bitCount : usedColors
-    var index = 54
+    // var index = 54
     var tmpPalette = []
     for (var i = 0; i < length; i++) {
-      var b = dataview.getUint8(index++)
-      var g = dataview.getUint8(index++)
-      var r = dataview.getUint8(index++)
-      var a = dataview.getUint8(index++)
+//      var b = dataview.getUint8(index++)
+//      var g = dataview.getUint8(index++)
+//      var r = dataview.getUint8(index++)
+//      var a = dataview.getUint8(index++)
 
-      tmpPalette.push(Palette.getColorFromRGBA(r, g, b, a))
+      // tmpPalette.push(Palette.getColorFromRGBA(r, g, b, a))
     }
     this.palette_key = tmpPalette
     this.palette = Array.from(tmpPalette)
@@ -107,7 +107,7 @@ Bitmap.prototype = {
     oReq.onload = function (oEvent) {
       var arrayBuffer = oReq.response // Note: not oReq.responseText
       if (arrayBuffer) {
-        var byteArray = new Uint8Array(arrayBuffer)
+        // var byteArray = new Uint8Array(arrayBuffer)
         var bitmap = new Bitmap().fromArrayBuffer(arrayBuffer)
         bitmap.title = filename.slice(-8).replace(/\.bmp|_/g, '').toSentenceCase()
         bitmap.init()
@@ -119,12 +119,6 @@ Bitmap.prototype = {
 
   // OUTPUT
   //
-  generateDom: function generateDom () {
-    // this.dom = dom
-    this.render()
-    return dom
-  },
-
   render: function render () {
     this.generateImageData(this.pixels, this.palette, this.imageData)
   },
