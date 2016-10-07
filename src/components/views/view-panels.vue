@@ -1,4 +1,13 @@
-<template>
+<style>
+#drop {
+  min-height: 150px;
+  width: 250px;
+  border: 1px solid blue;
+  margin: 10px;
+  padding: 10px;
+}
+</style>
+ <template>
   <!-- root node required -->
   <div>
 
@@ -28,24 +37,13 @@
 -->
 <!-- Tokens; alternative: Chips -->
 
-          
-       <j-panel icon="upload" title="Some panel">
+       <j-panel icon="business" title="Gallery">
          test
        </j-panel>
-       <j-panel icon="upload" title="Some panel">
-         test
-       </j-panel>
-     
+
       <j-panel icon="shopping_cart" v-for="(listName, list) in lists" :title='listName' :x='$index * 340  + 20' :y='40' >
 
-
-      <div slot="toolbar" class='j-panel-toolbar'>
-          <button class="circle text-white small"><i>dns</i></button>
-          <input type="file" @change='loadBitmap'  id="file-upload-bitmap"  style="display:inline-block;xdisplay:none;" value="C:\_working\_MOE\_FINAL\img\bmp" multiple accept=".bmp, .tif, .tiff|images/*" /> 
-          <button class=" text-white small"><i>chrome_reader_mode</i></button>
-          <button class=" text-white small"><i>donut_small</i></button>
-          <button class=" text-white small"><i>extension</i></button>
-      </div>
+    
 
       <div slot="toolbar" class='j-panel-toolbar'>
            <!-- Tabs -->
@@ -66,12 +64,28 @@
           <!-- Tab Targets -->
           
           <div id="tab-1">
-           asdasdasd
+             <div slot="toolbar" class='j-panel-toolbar'>
+          <button class="circle "><i>dns</i></button>
+          <input type="file" @change='loadBitmap'  id="file-upload-bitmap"  
+          style="display:none;" 
+          value="C:\_working\_MOE\_FINAL\img\bmp" multiple accept=".bmp, .tif, .tiff|images/*" /> 
+          <button class=" small"><i>chrome_reader_mode</i></button>
+          <button class=" small"><i>donut_small</i></button>
+          <button class=" small"><i>extension</i></button>
+      </div>
           </div>          
           
           
           <div id="tab-2">
-         
+             <div slot="toolbar" class='j-panel-toolbar'>
+          <button class="circle "><i>dns</i></button>
+          <input type="file" @change='loadBitmap'  id="file-upload-bitmap"  
+          style="display:none;" 
+          value="C:\_working\_MOE\_FINAL\img\bmp" multiple accept=".bmp, .tif, .tiff|images/*" /> 
+          <button class=" small"><i>chrome_reader_mode</i></button>
+          <button class=" small"><i>donut_small</i></button>
+          <button class=" small"><i>extension</i></button>
+      </div>
              <div class="list">
                 <!-- chips -->
                 <div class="item multiple-lines">
@@ -95,7 +109,15 @@
          
           </div>
           <div id="tab-3">
-
+    <div slot="toolbar" class='j-panel-toolbar'>
+          <button class="circle "><i>dns</i></button>
+          <input type="file" @change='loadBitmap'  id="file-upload-bitmap"  
+          style="display:none;" 
+          value="C:\_working\_MOE\_FINAL\img\bmp" multiple accept=".bmp, .tif, .tiff|images/*" /> 
+          <button class=" small"><i>chrome_reader_mode</i></button>
+          <button class=" small"><i>donut_small</i></button>
+          <button class=" small"><i>extension</i></button>
+      </div>
           <div v-dnd-list :dnd-list="list" :dnd-horizontal-list="false">
 
             <div class='list' v-dnd-draggable v-for="item in list" :dnd-draggable="item" :dnd-index="$index" :dnd-data="list" dnd-selected="selectedEvent" dnd-effect-allowed="copyMove" v-bind:class="{'selected': selected === item}">
@@ -156,10 +178,15 @@
       </j-panel>
 
       <!-- #data -->
-      <j-panel title='Debug' x="20" y="420" >
+      <j-panel title='Debug' :x="20" :y="420" >
         <pre class='text-dark' style="font-size:10px;line-height:10px;">{{ $data | json 2 }}</pre>
       </j-panel>
-
+      
+  
+       <j-panel title="Level" :x="220" :y="420">
+         <j-upload></j-upload>
+       </j-panel>
+          
 
     </div><!-- your content -->
 
@@ -180,7 +207,7 @@ require('jquery-ui-css/draggable.css')
 require('jquery-ui-css/sortable.css')
 require('jquery-ui-css/resizable.css')
 var jPanel = require('components/custom/j-panel')
-
+var jUpload = require('components/custom/j-upload')
 var Bitmap = require('../../moe/moe.bitmap.js')
 console.log(Bitmap)
 export default {
@@ -229,14 +256,14 @@ export default {
     }
   },
   components: {
-    jPanel
+    jPanel, jUpload
   },
   ready () {
     // var self = this
     // var $el = $(self.$el)
     // var $content = $(self.$els.myList)
     // Make Sortable
-    console.log($('.sortable').length + ' sortables!')
+    console.log($('.sortable').length + ' sortables !')
     $('.sortable')
       .sortable({
         connectWith: '.sortable',

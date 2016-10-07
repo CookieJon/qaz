@@ -7,10 +7,11 @@
     <div class='j-panel-header' @dblClick='toggle()' v-el:header>
 
       <div class='j-panel-toolbar j-panel-title'>
-        <i class="">{{ icon }}</i>
-        <span class="title">{{ title + ' [' + _static._currentPanel.id + ']' }}</span>
+        <i class="item-primary">{{ icon }}</i>
+        <span class="title">{{ title }}</span>
         <i class="item-secondary">menu</i>
-        <i class="item-secondary" :class="{'rotate-180': expanded}">keyboard_arrow_down</i>
+        <i class="xitem-secondary" style="font-size:1.2rem; margin-left:auto;" :class="{'rotate-180': expanded}">keyboard_arrow_down</i>
+        <i class="item-secondary">more_vert</i>
       </div>
 
       <slot name="toolbar">
@@ -29,6 +30,7 @@
        <div class='j-content-inner'>
 
 <!--      <div v-for="i in 25" style="width:50px;height:50px;margin:5px; background:pink; border:2px solid orange;display:inline-block;">HI</div>-->
+<!--
 
           <ul v-dnd-list :dnd-list="images" :dnd-horizontal-list="true">
               <div v-dnd-draggable v-for="item in images"
@@ -44,6 +46,7 @@
               <div class=" j-draggable dndPlaceholder red">Custom placeholder</div>
           </ul>
         
+-->
          <slot></slot>
       
        </div>
@@ -78,12 +81,8 @@
       title: {
         type: String
       },
-      x: {
-        default: 88
-      },
-      y: {
-        default: 88
-      },
+      x: {type: Number, default: 88},
+      y: {type: Number, default: 88},
       expanded: {
         type: Boolean,
         default: true,
@@ -141,6 +140,7 @@
       _static._panels.push(this)
       _static._panelCount++
       _static._currentPanel = this
+      this.x = _static._panels.length * 200
       this._static = _static
       this.order = _static._panels.length - 1
       this.id = 'Panel-00' + _static._panelCount
@@ -167,7 +167,7 @@
           handles: 'all'
           // helper: '.resizable-helper'
         })
-        .on('mouseover', function () {
+        .on('mousedown', function () {
           console.log('mousedown', vm)
           vm.moveToFront()
         })
@@ -207,97 +207,6 @@
     }
   }
 </script>
-
-
-<style lang="stylus">
-.j-draggable {
-  width:50px;height:50px;margin:5px; background:pink; border:2px solid orange;display:inline-block;position:relative;
-}
-.layout-view
-  scroll none
-  -webkit-backdrop-filter grayscale(1)
-  backdrop-filter grayscale(1)
-
-.bg-glass
-  background rgba(30, 30, 30, .3)
-  backdrop-filter grayscale(100%) blur(4px)
-
-
-.card-title
-  background $blue
-
-</style>
-
-<style lang="less">
-
-/** 
- * For the correct positioning of the placeholder element, the dnd-list and
- * it's children must have position: relative
- */
-ul[dnd-list],
-ul[dnd-list] > li {
-	position: relative;
-}
-/**
- * The dnd-list should always have a min-height,
- * otherwise you can't drop to it once it's empty
- */
-ul[dnd-list] {
-    padding-left: 0px;
-		min-height: 40px;
-}
-/**
- * The dndDraggingSource class will be applied to
- * the source element of a drag operation. It makes
- * sense to hide it to give the user the feeling
- * that he's actually moving it.
- */
-ul[dnd-list] .dndDragging{
-    opacity: 0.7;
-}
-ul[dnd-list] .dndDraggingSource {
-    display: none;
-}
-/**
- * An element with .dndPlaceholder class will be
- * added to the dnd-list while the user is dragging
- * over it.
- */
-ul[dnd-list] .dndPlaceholder {
-    display: block;
-    background-color: #eee;
-    min-height: 41px;
-}
-ul[dnd-list] .dndPlaceholder.red{
-  color: #F26B63;
-}
-/**
- * The dnd-lists's child elements currently MUST have
- * position: relative. Otherwise we can not determine
- * whether the mouse pointer is in the upper or lower
- * half of the element we are dragging over. In other
- * browsers we can use event.offsetY for this.
- */
-ul[dnd-list] li {
-    background-color: #fff;
-    color: #35495E;
-    border-bottom: 1px solid #41B883;
-    display: block;
-    padding: 10px 15px;
-}
-ul[dnd-list] li:last-child {
-    border-bottom: none;
-    border-bottom-left-radius: 3px;
-    border-bottom-right-radius: 3px;
-}
-/**
- * Show selected elements in green  有问题的
- */
-ul[dnd-list] li.selected {
-    background-color: #dff0d8;
-    color: #3c763d;
-}
-</style>
 
 <style>
   .ripple {
@@ -345,8 +254,8 @@ ul[dnd-list] li.selected {
     align-content flex-start
     zbackground-clip border-box
     min-width 250px
-    border-top-left-radius 6px
-    border-top-right-radius 6px
+    // border-top-left-radius 6px
+    // border-top-right-radius 6px
     xbox-shadow 0 3px 6px 3px rgba(1,1,1,0.4)
     transition box-shadow .2s ease-in-out 0s
     z-index 5
@@ -386,16 +295,29 @@ ul[dnd-list] li.selected {
     align-items center
     align-content flex-start
     min-height 36px
-    padding 0px
-    background lighten($primary, 30%)
+    background $light
     //background  $primary
-    color white
     font-size 1rem
     z-index 9
+    color $primary-light
+  & > i
+    font-size 24px
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+    /* Support for IE. */
+    font-feature-settings: 'liga';
 
-/*
+  &.j-panel-title
+    background $primary
+    z-index 10
+    padding 14px
+    color white
+    box-shadow 0 1px 3px 2px rgba(1,1,1,0.4)
+
     & > :not(:last-child)
-      margin-right 4px
+      margin-right 14px
 */
 
     & > .title
@@ -407,11 +329,6 @@ ul[dnd-list] li.selected {
       height 20px
 */
 
-  &.j-panel-title
-    background $primary
-    z-index 10
-    padding 4px
-    // box-shadow 0 1px 3px 2px rgba(1,1,1,0.4)
 
 
 </style>

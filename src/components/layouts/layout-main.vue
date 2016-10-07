@@ -1,5 +1,6 @@
 <template>
   <quasar-layout v-bind:style="bgStyle">
+   <!--
     <div slot="header" class="toolbar bg-primary shadow-2 z-marginal-plus-1">
       <button>
         <i>menu</i>
@@ -9,11 +10,7 @@
       </button>
       <quasar-toolbar-title :padding="3">
         quaZ-APP!      
-      <quasar-select
-        type="radio"
-        :model.sync="selectedBg"
-        :options="options"
-      ></quasar-select>
+     
       </quasar-toolbar-title>
 
       <button>
@@ -23,24 +20,30 @@
         <i>alarm</i>
       </button>
     </div>
+--> 
 
-
-     <!-- Navigation Tabs -->
+     <!-- Navigation Tabs 
      <quasar-tabs slot="navigation" class="bg-secondary text-white">
       <quasar-tab icon="mail" v-link="{path: '/view-panels', exact: true}">Panels</quasar-tab>
       <quasar-tab icon="alarm" v-link="{path: '/view-sortable', exact: true}">Sortable</quasar-tab>
       <quasar-tab icon="help" v-link="{path: '/view-editor', exact: true}">Editor</quasar-tab>
     </quasar-tabs>
-    
-
+    -->
+<quasar-select
+        type="radio"
+        :model.sync="selectedBg"
+        :options="options"
+      ></quasar-select>
    <!-- FABS -->
-   <div class="column items-bottom"  v-bind:style="{'background-image': selectedBg}" style="bottom: 100px; z-index:10;">
-      <quasar-fab type="indigo" style="margin-top:auto; margin-bottom:100px;" icon="collections" direction="right" class="align-end">
+      <quasar-fab type="indigo" style="margin:40px 20px " icon="collections" direction="right" class="fixed-top-left">
         <quasar-small-fab class="white" @click="this.openModal()">mail</quasar-small-fab>
         <quasar-small-fab class="white" @click="toast('alarm')">alarm</quasar-small-fab>
       </quasar-fab>
+      
+   <div class="column items-bottom"  v-bind:style="{'background-image': selectedBg}" style="bottom: 100px; z-index:0;">
     </div>
 
+     
       <!-- <div class="layout-view no-scroll">keep-alive>-->
       <router-view keep-alive> </router-view>
       
@@ -113,7 +116,6 @@
 
 <style lang="css">
   
-  
 .ripple {
   position: absolute;
   background: rgba(0,0,0,.25);
@@ -132,8 +134,7 @@ ripple { to {
 }
 }
 </style>
-  
-</sctyle>
+
 <style lang="stylus">
 
   .layout
