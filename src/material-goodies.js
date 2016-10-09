@@ -14,6 +14,8 @@
     // var dndDropEffectWorkaround = {}
     // var dndDragTypeWorkaround = {}
 
+    // goodies-ripple directive
+    //
     Vue.directive('goodies-ripple', {
 
       bind: function (el, binding, vnode) {
@@ -46,11 +48,52 @@
       }
     })
 
-    console.log('-HOY!')
+    // goodies-upload-zone directive
+    //
+    Vue.directive('goodies-upload-zone', {
+      bind: function (el, binding, vnode) {
+        console.log('els bells', el)
+        el.addEventListener('dragenter', doDragEnter, false)
+        el.addEventListener('dragover', doDragOver, false)
+        el.addEventListener('drop', doDrop, false)
+        var img = document.createElement('img')
+        el.appendChild(img)
+        var input = document.createElement('input')
+        input.type = 'file'
+        el.appendChild(input)
+        input.addEventListener('change', fileChanged, false)
+
+        function doDragEnter (e) {
+          e.stopPropagation()
+          e.preventDefault()
+        }
+        function doDragOver (e) {
+          e.stopPropagation()
+          e.preventDefault()
+        }
+        function doDrop (e) {
+          console.log(e)
+          var dt = e.dataTransfer
+          var files = dt.files
+          // this code line fires your 'fileChanged' function (imageLoader change event)
+          input.files = files
+        }
+        function fileChanged (e) {
+          var reader = new FileReader()
+          reader.onload = function (event) {
+            img.setAttribute('src', event.target.result)
+          }
+          reader.readAsDataURL(e.target.files[0])
+        }
+      }
+    })
   }
 
   module.exports = MaterialGoodies
 /*
+e.g.
+<div id="hook-arguments-example" v-demo:hello.a.b="message"></div>
+
 Vue.directive('demo', {
   bind: function (el, binding, vnode) {
     var s = JSON.stringify
@@ -63,4 +106,11 @@ Vue.directive('demo', {
       'vnode keys: ' + Object.keys(vnode).join(', ')
   }
 })
+
+name: "demo"<br>
+value: "hello!"<br>
+expression: "message"<br>
+argument: "hello"<br>
+modifiers: {"a":true,"b":true}<br>
+vnode keys: tag, data, children, text, elm, ns, context, key, componentOptions, child, parent, raw, isStatic, isRootInsert, isComment, isCloned
 */

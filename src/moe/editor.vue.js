@@ -246,7 +246,7 @@ $(document).ready(function() {
             me.sortToIndex = ui.item.index();
             console.log("To " + ui.item.index());
 
-            // Move array element from->to routine 
+            // Move array element from->to routine
             // NB: Vue maintains binding with Array methods, push(), splice(), etc.
             if (me.sortToIndex >= me.items.length) {
               var k = me.sortToIndex - me.items.length;
@@ -262,8 +262,6 @@ $(document).ready(function() {
 
     }
   });
-  
-  
   Vue.component('tr-item', {
 
     props: ['item'],

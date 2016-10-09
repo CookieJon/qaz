@@ -1,11 +1,14 @@
 <template>
 
   <!-- j-panel -->
-  <div class='j-panel non-selectable item-collapsible shadow-transition hoverable-5' 
-     v-bind:style='computedStyle'  >
-
+  <div
+    class='j-panel non-selectable xitem-collapsible xshadow-transition xhoverable-5'
+    v-bind:style='computedStyle'
+  >
+    <!-- j-panel-header -->
     <div class='j-panel-header' @dblClick='toggle()' v-el:header>
 
+      <!-- j-panel-title -->
       <div class='j-panel-toolbar j-panel-title'>
         <i class="item-primary">{{ icon }}</i>
         <span class="title">{{ title }}</span>
@@ -14,49 +17,31 @@
         <i class="item-secondary">more_vert</i>
       </div>
 
-      <slot name="toolbar">
-<!--
-       <div class='j-panel-toolbar'>
-
-       </div>
--->
+      <!-- user toolbars -->
+      <slot name="header">
+        <!-- <div class='j-panel-toolbar'></div> -->
       </slot>
 
     </div>
 
-
+    <!-- j-panel-content -->
     <div class='j-panel-content' v-el:content>
 
-       <div class='j-content-inner'>
+        <div class='j-panel-content-inner' v-el:content-inner>
 
-<!--      <div v-for="i in 25" style="width:50px;height:50px;margin:5px; background:pink; border:2px solid orange;display:inline-block;">HI</div>-->
-<!--
+          <slot></slot>
 
-          <ul v-dnd-list :dnd-list="images" :dnd-horizontal-list="true">
-              <div v-dnd-draggable v-for="item in images"
-                  :dnd-draggable="item"
-                  :dnd-index="$index"
-                  :dnd-data="images"
-                  dnd-selected="selectedEvent"
-                  dnd-effect-allowed="move"
-                  class="j-draggable"
-                  v-bind:class="{'selected': selected === item}">
-                  {{item.label}}
-              </div>
-              <div class=" j-draggable dndPlaceholder red">Custom placeholder</div>
-          </ul>
-        
--->
-         <slot></slot>
-      
        </div>
-       
+
     </div>
 
+    <!-- j-panel-footer -->
     <div class='j-panel-footer' v-el:footer>
-      <div class='j-panel-toolbar'>
-        Footer Toolbar
-      </div>
+
+      <!-- user toolbars -->
+      <slot name="footer">
+        <!-- <div class='j-panel-toolbar'></div> -->
+      </slot>
     </div>
 
   </div>
@@ -149,15 +134,16 @@
     ready () {
       var vm = this
       var $el = $(vm.$el)
-      var $content = $(vm.$els.content)
+      // var $content = $(vm.$els.content)
       this.header_height = $(vm.$els.header).outerHeight()
 
-      $content.mCustomScrollbar({
-        theme: 'dark'
-      })
-      $el
+      $(vm.$els.contentInner)
+        .mCustomScrollbar({
+          theme: 'dark'
+        })
         // Resizable
         //
+      $el
         .resizable({
           stop (event, ui) {
             vm.style.width = ui.size.width
@@ -259,11 +245,14 @@
     xbox-shadow 0 3px 6px 3px rgba(1,1,1,0.4)
     transition box-shadow .2s ease-in-out 0s
     z-index 5
+    width 100%
+    background-color rgba(96, 125, 139, 0.22)
+    box-shadow 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6)
 
   .j-panel-header
     xborder 4px dotted orange
     flex-shrink 0
-    background $primary
+    xbackground $primary
     z-index 10
 
   .j-panel-content
@@ -271,6 +260,34 @@
     overflow hidden
     padding 2px
     flex-grow 1
+    display flex
+    flex-wrap nowrap
+    flex-direction column
+    background-color rgba(255, 255, 255, 0.92)
+    z-index 0
+    padding-top 0
+    xperspective 100px
+    xtransform translateX( -100px )
+    z-index 9
+
+  .j-panel-content-inner
+    xborder 2px dotted yellow
+    overflow hidden
+    padding 2px
+    flex-grow 1
+    display flex
+    flex-wrap nowrap
+    flex-direction column
+    background white
+
+  .panel-item-grow
+    border 4px dotted red
+    overflow hidden
+    padding 2px
+    flex-grow 1
+    display flex
+    flex-wrap nowrap
+    flex-direction column
     background white
     z-index 0
     padding-top 0
@@ -282,11 +299,14 @@
     xborder 4px dotted pink
     height 36px
     flex-shrink 0
-    background $primary
+    xbackground $primary
     color white
 
+  .j-panel-item
+    border 2px dotted orange
+    
+  .item-expand
   .j-panel-toolbar
-    xborder 2px dotted orange
     display flex
     flex-wrap nowrap
     flex-direction row
@@ -294,7 +314,7 @@
     zjustify-content flex-start
     align-items center
     align-content flex-start
-    min-height 36px
+    height 42px
     background $light
     //background  $primary
     font-size 1rem
@@ -318,7 +338,6 @@
 
     & > :not(:last-child)
       margin-right 14px
-*/
 
     & > .title
       margin-right auto
@@ -335,42 +354,3 @@
 
 
 <style src="malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"></style>
-<style>
-/* For the "inset" look only */
-html {
-    overflow: auto;
-}
-body {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    bottom: 20px;
-    right: 20px;
-    padding: 30px; 
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-/* Let's get this party started */
-::-webkit-scrollbar {
-    width: 12px;
-}
- 
-/* Track */
-::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    xbackground: rgba(0,0,0,0.8); 
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
-}
-::-webkit-scrollbar-thumb:window-inactive {
-	background: rgba(255,0,0,0.4); 
-}
-</style>
