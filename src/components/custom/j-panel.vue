@@ -27,9 +27,10 @@
     <!-- j-panel-content -->
     <div class='j-panel-content' v-el:content>
 
-        <div class='j-panel-content-inner' v-el:content-inner>
+        <div class='j-panel-content-inner scroll' v-el:content-inner>
 
-          <slot></slot>
+          <!-- user content -->
+          <slot name="content"></slot>
 
        </div>
 
@@ -39,9 +40,8 @@
     <div class='j-panel-footer' v-el:footer>
 
       <!-- user toolbars -->
-      <slot name="footer">
-        <!-- <div class='j-panel-toolbar'></div> -->
-      </slot>
+      <slot name="footer"></slot>
+
     </div>
 
   </div>
@@ -125,7 +125,7 @@
       _static._panels.push(this)
       _static._panelCount++
       _static._currentPanel = this
-      this.x = _static._panels.length * 200
+      this.style.x = _static._panels.length * 200
       this._static = _static
       this.order = _static._panels.length - 1
       this.id = 'Panel-00' + _static._panelCount
@@ -137,12 +137,18 @@
       // var $content = $(vm.$els.content)
       this.header_height = $(vm.$els.header).outerHeight()
 
-      $(vm.$els.contentInner)
+      // Scrollable
+      //
+      // $(vm.$els.contentInner)
+      $el
+        .find('.scroll')
+        .wrapInner('<div></div>')
         .mCustomScrollbar({
           theme: 'dark'
         })
-        // Resizable
-        //
+
+      // Resizable
+      //
       $el
         .resizable({
           stop (event, ui) {
@@ -280,10 +286,11 @@
     flex-direction column
     background white
 
+  .content-item
+    
   .panel-item-grow
     border 4px dotted red
     overflow hidden
-    padding 2px
     flex-grow 1
     display flex
     flex-wrap nowrap
@@ -293,7 +300,6 @@
     padding-top 0
     xperspective 100px
     xtransform translateX( -100px )
-    z-index 9
 
   .j-panel-footer
     xborder 4px dotted pink
@@ -302,10 +308,18 @@
     xbackground $primary
     color white
 
-  .j-panel-item
+  .j-panel-area
     border 2px dotted orange
-    
-  .item-expand
+    border-left 4px solid orange
+
+  .flex-grow
+    flex-grow 1
+
+  .flex-shrink
+    flex-shrink 1
+
+  // .area-resizable
+
   .j-panel-toolbar
     display flex
     flex-wrap nowrap
@@ -316,7 +330,7 @@
     align-content flex-start
     height 42px
     background $light
-    //background  $primary
+    // background  $primary
     font-size 1rem
     z-index 9
     color $primary-light

@@ -1,9 +1,11 @@
-<template>
-  <div>
-    <div>test
+
+ 
+
+ 
+ <template>
+    <div class='collection-item' >test
      {{ item }}
     </div>
-  </div>
 </template>
 
 <script>

@@ -1,15 +1,52 @@
 <style lang="stylus">
   .collection-container
-    border 4px dotted crimson
+    min-height 200px
+
+  .collection-list
+    xdisplay flex
+    xflex-wrap nowrap
+    xflex-direction column
+
+  .collection-item
+    xflex-shrink 1
+    display inline-block
+    position relative
+    width auto
+    margin 4px
+    min-height 48px
+    padding 12px
+    border-bottom 1px solid rgba(0,0,0,0.1)
+    background white
+    border-left 4px solid orange
+    transition .3s
+
+  .collection-list.list-type-grid
+    background-color rgba(255, 255, 255, .95)
+    xflex-flow row wrap // direction=  wrap=
+    xjustify-content flex-start
+
+  .collection-list.list-type-grid .collection-item
+    width 80px
+    height 80px
+    flex-shrink 0
+    background-color white // rgba(255,255,255,.4)
+
+
+
+
+
+
 </style>
 
 <template>
-    <div class='collection-container scroll fit'>
-       
-      <pre class='bg-primary text-white'>{{ model | json 2 }} </pre>
-        <div class='collection-sortable'>
-            <j-item v-for='(i, item) in model' :item='item' ></j-item>
-        </div>
+    <div class='collection-container'>
+     <label>Collection</label>
+      <div class='j-panel-toolbar text-primary'>
+        <button><i>play</i></button>
+      </div>
+      <div class='collection-list list-type-grid' style='flex-grow: 1;'>
+        <j-item v-for='(i, item) in model' :item='item' ></j-item>
+      </div>
     </div>
 </template>
 
@@ -47,7 +84,7 @@ export default {
   ready () {
     var me = this
     $(this.$el)
-      .find('.collection-sortable')
+      .find('.collection-list')
       .sortable({
         forcePlaceholderSize: true,
         forceHelperSize: true,

@@ -26,26 +26,25 @@
         >
           <div slot="header" class='j-panel-toolbar'>Header toolbar</div>
 
-          <!-- content -->
-          <div class='j-panel-toolbar'>CONTENT toolbar</div>
+         
+          <!-- content 
+          <div slot="content" class='j-panel-toolbar'>
+            <span class="title">Bitmaps : Content Toolbar</span>
+          </div>
 
-          <div class="j-panel-toolbar">
+          <div slot="content" class="j-panel-toolbar">
             <i class="item-primary">face</i>
             <i class="item-primary">extension</i>
           </div>
 
-          <div class="j-panel-item scroll" style="flex-shrink: 1; height: 100px;">
-            <j-collection :model="bitmaps"
-            ></j-collection>
-          </div>
-          
-          <div class="j-panel-toolbar">
-            <i class="item-primary">face</i>
-            <i class="item-primary">extension</i>
-          </div>
+          <div slot="content" class="j-panel-item scroll" style="height: 100px;">
 
-          <div class="j-panel-item panel-item-grow">
-            <j-collection :model="bitmaps"
+          </div
+          >-->
+
+          <div slot="content" class="j-tray area panel-item-grow">
+            <j-collection
+              :model="bitmaps"
             ></j-collection>
           </div>
 
