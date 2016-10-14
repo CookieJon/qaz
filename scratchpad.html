@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul { float:left; margin-right:20px; }
+
+        body { color:white; font-family:Helvetica, sans-serif; text-shadow:1px 1px 1px rgba(0,0,0,0.2); }
+        ul { width:512px; overflow:hidden; border-radius:6px; }
+        li { width:50px;display:block; float:left; position:relative; padding:12px 6px; z-index:1; }
+        li:after { background:#18629D; display:block; position:absolute; height:100%; width:100%; top:0px; left:0px; content:' '; border-radius:6px; z-index:-1; }
+
+        li { -moz-transition:border-top-width 0.1s ease-in; -webkit-transition:border-top-width 0.1s ease-in; border-top:0px solid rgba(0,0,0,0); }
+        .marker { opacity:0.0; }
+    </style>
+
+    <style name="impostor_size">
+        .marker + li { border-top-width:0px; }
+    </style>
+</head>
+<body>
+    <div id="body">
+        <ul id="holder">
+            <li>a</li>
+            <li>a</li>
+            <li>a</li>
+            <li>a</li>
+            <li>a</li>
+            <li>a</li>
+        </ul>
+    </div>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        var stylesheet = $('style[name=impostor_size]')[0].sheet,
+            rule = stylesheet.rules ? stylesheet.rules[0].style : stylesheet.cssRules[0].style,
+            setPadding = function(atHeight) {
+                rule.cssText = 'border-top-width: '+atHeight+'px'; 
+            };
+
+        $('ul').sortable({
+            'placeholder':'marker',
+            'start':function(ev, ui) {
+                setPadding(ui.item.height());
+            },
+            'stop':function(ev, ui) {
+                var next = ui.item.next();
+                next.css({'-moz-transition':'none', '-webkit-transition':'none', 'transition':'none'});
+                setTimeout(next.css.bind(next, {'-moz-transition':'border-top-width 0.1s ease-in', '-webkit-transition':'border-top-width 0.1s ease-in', 'transition':'border-top-width 0.1s ease-in'}));
+            }
+        });
+    </script>
+</body>
+</html>
+0

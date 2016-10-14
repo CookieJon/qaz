@@ -160,7 +160,6 @@
           // helper: '.resizable-helper'
         })
         .on('mousedown', function () {
-          console.log('mousedown', vm)
           vm.moveToFront()
         })
         .draggable({
@@ -182,13 +181,12 @@
       },
       moveToFront () {
         var _panels = this._static._panels
-        console.log('CLICKY! = ' + _panels.length)
         _panels.push(_panels.splice(this.order, 1)[0])
         //  array.push(array.splice(array.indexOf(element), 1)[0]);
 
         _panels.forEach(function (value, index) {
           value.order = index
-          console.log(index, value.title, 'order=', value.order)
+          // console.log(index, value.title, 'order=', value.order)
         })
       },
       fetchPic () {
@@ -289,7 +287,7 @@
   .content-item
     
   .panel-item-grow
-    border 4px dotted red
+    xborder 4px dotted red
     overflow hidden
     flex-grow 1
     display flex

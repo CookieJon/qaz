@@ -1,115 +1,128 @@
+
 <style lang="stylus">
-  .collection-container
-    min-height 200px
-
-  .collection-list
-    xdisplay flex
-    xflex-wrap nowrap
-    xflex-direction column
-
-  .collection-item
-    xflex-shrink 1
-    display inline-block
-    position relative
-    width auto
-    margin 4px
-    min-height 48px
-    padding 12px
-    border-bottom 1px solid rgba(0,0,0,0.1)
-    background white
-    border-left 4px solid orange
-    transition .3s
-
-  .collection-list.list-type-grid
-    background-color rgba(255, 255, 255, .95)
-    xflex-flow row wrap // direction=  wrap=
-    xjustify-content flex-start
-
-  .collection-list.list-type-grid .collection-item
-    width 80px
-    height 80px
-    flex-shrink 0
-    background-color white // rgba(255,255,255,.4)
 
 
 
+.frame.frame-type-grid
+  padding 5px
+  background-color #f0f0f0
 
+.frame.frame-type-grid > .frame
+  xwidth 220px
+  xheight 100px
+  position relative
+  margin 5px
+  float left
+  min-height 48px
+  border-bottom 1px solid rgba(0,0,0,0.1)
+  background white
+  border-left 2px solid orange
+  box-shadow 0 3px 6px 3px rgba(1,1,1,0.4)
+  background-color rgba(255, 255, 255, 1)
+  box-shadow 3px 3px 5px rgba(0, 0, 0, 0.1)
+  z-index 10
+  padding 8px
 
+.frame.frame-type-grid > .frame > img
+  display none
+  width 128px
+  height 128px
+
+.frame.frame-type-grid > .frame > canvas
+  display inline-block
+  width 120px
+  height 120px
+
+.item-label 
+  position absolute
+  padding 4px
+  top 88px
+  height 40px
+  width 120px
+  color white
+  font-size .8rem
+  xfont-weight bold
+  background-color  rgba(0, 0, 0, .35)
+
+.sortable-ghost
+  opacity 0.1
+  z-index 0
+  border 4px solid red
+
+.sortable-chosen
+  xborder 2px solid green
+  box-shadow 10px 10px 25px rgba(0, 0, 0, 1)
+
+.sortable-drag
+  border 4px solid blue
+  box-shadow 10px 10px 25px rgba(0, 0, 0, 1)
 
 </style>
 
 <template>
-    <div class='collection-container'>
-     <label>Collection</label>
-      <div class='j-panel-toolbar text-primary'>
-        <button><i>play</i></button>
-      </div>
-      <div class='collection-list list-type-grid' style='flex-grow: 1;'>
-        <j-item v-for='(i, item) in model' :item='item' ></j-item>
-      </div>
-    </div>
+  <div v-sortable="options.sortable" class="frame frame-type-grid">
+    <j-item v-for='(i, item) in model' :item='item'></j-item>
+  </div>
 </template>
 
 <script>
-var $ = require('jquery')
-require('jquery-mousewheel')
-require('malihu-custom-scrollbar-plugin')
-require('jquery-ui/draggable')
-require('jquery-ui/resizable')
-require('jquery-ui/sortable') // NB Not used at the moment.
-require('jquery-ui-css/core.css')
-require('jquery-ui-css/theme.css')
-require('jquery-ui-css/draggable.css')
-require('jquery-ui-css/sortable.css')
-require('jquery-ui-css/resizable.css')
-var Bitmap = require('../../moe/moe.bitmap.js')
-console.log(Bitmap)
-var jItem = require('components/custom/j-item')
-export default {
-  data () {
-    return {
-      sortFromIndex: null,
-      sortToIndex: null
-    }
-  },
-  props: {
-    model: {
-      type: [Array, Object],
-      required: true
-    }
-  },
-  components: {
-    jItem
-  },
-  ready () {
-    var me = this
-    $(this.$el)
-      .find('.collection-list')
-      .sortable({
-        forcePlaceholderSize: true,
-        forceHelperSize: true,
-        placeholder: '.ui-sortable-placeholder',
-        delay: 150,
-        // handle: '.drag-handle',
-        start: function (event, ui) {
-          me.sortFromIndex = ui.item.index()
-          console.log('From ' + ui.item.index())
-        },
-        update: function (event, ui) {
-          me.sortToIndex = ui.item.index()
-          console.log('To ' + ui.item.index())
-          // Move array element from->to routine
-          // NB: Vue maintains binding with Array methods, push(), splice(), etc.
-          if (me.sortToIndex >= me.model.length) {
-            var k = me.sortToIndex - me.model.length
-            while ((k--) + 1) {
-              me.model.push(undefined)
-            }
+  // var Bitmap = require('../../moe/moe.bitmap.js')
+  var jItem = require('components/custom/j-item')
+  export default {
+    data () {
+      return {
+        options: {
+          sortable: {
+            animation: 550,
+            ghostClass: 'sortable-ghost',  // Class name for the drop placeholder
+            chosenClass: 'sortable-chosen',  // Class name for the chosen item
+            dragClass: 'sortable-drag'  // Class name for the dragging item
           }
-          me.model.splice(me.sortToIndex, 0, me.model.splice(me.sortFromIndex, 1)[0])
-        }
-      })
-      .disableSelection()
+        },
+        sortFromIndex: null,
+        sortToIndex: null
+      }
+    },
+    props: {
+      model: {
+        type: [Array, Object],
+        required: true
+      }
+    },
+    components: {
+      jItem
+    },
+    ready () {
+      // var me = this
+    }
   }
-}
-  </script>
+</script>
+
+<!--
+       ** SORTABLE OPTIONS **
+        group: "name",  // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+        sort: true,  // sorting inside list
+        delay: 0, // time in milliseconds to define when the sorting should start
+        disabled: false, // Disables the sortable if set to true.
+        store: null,  // @see Store
+        animation: 150,  // ms, animation speed moving items when sorting, `0` — without animation
+        handle: ".my-handle",  // Drag handle selector within list items
+        filter: ".ignore-elements",  // Selectors that do not lead to dragging (String or Function)
+        draggable: ".item",  // Specifies which items inside the element should be draggable
+        ghostClass: "sortable-ghost",  // Class name for the drop placeholder
+        chosenClass: "sortable-chosen",  // Class name for the chosen item
+        dragClass: "sortable-drag",  // Class name for the dragging item
+        dataIdAttr: 'data-id',
+
+        forceFallback: false,  // ignore the HTML5 DnD behaviour and force the fallback to kick in
+
+        fallbackClass: "sortable-fallback",  // Class name for the cloned DOM Element when using forceFallback
+        fallbackOnBody: false,  // Appends the cloned DOM Element into the Document's Body
+        fallbackTolerance: 0 // Specify in pixels how far the mouse should move before it's considered as a drag.
+
+        scroll: true, // or HTMLElement
+        scrollFn: function(offsetX, offsetY, originalEvent) { ... }, // if you have custom scrollbar scrollFn may be used for autoscrolling
+        scrollSensitivity: 30, // px, how near the mouse must be to an edge to start scrolling.
+        scrollSpeed: 10, // px
+        + events...
+-->

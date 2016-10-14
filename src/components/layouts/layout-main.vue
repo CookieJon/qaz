@@ -66,6 +66,7 @@
           '/statics/img/resource/bg/bg4.png',
           '/statics/img/resource/bg/bg5.png',
           '/statics/img/resource/bg/bg6.png',
+          '/statics/img/resource/bg/bg7.png',
           '/statics/img/resource/bg/bg8.png',
           '/statics/img/resource/bg/bg10.png'
         ]
