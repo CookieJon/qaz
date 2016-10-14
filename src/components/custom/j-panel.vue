@@ -250,7 +250,7 @@
     transition box-shadow .2s ease-in-out 0s
     z-index 5
     width 100%
-    background-color rgba(96, 125, 139, 0.22)
+    background-color rgba(96, 125, 139, 0.0)
     box-shadow 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6)
 
   .j-panel-header
@@ -267,12 +267,13 @@
     display flex
     flex-wrap nowrap
     flex-direction column
-    background-color rgba(255, 255, 255, 0.92)
+    background-color rgba(255, 255, 255, 0.2)
     z-index 0
     padding-top 0
     xperspective 100px
     xtransform translateX( -100px )
     z-index 9
+    background-color rgba(0,0,0,.3)
 
   .j-panel-content-inner
     xborder 2px dotted yellow
@@ -282,7 +283,7 @@
     display flex
     flex-wrap nowrap
     flex-direction column
-    background white
+    xbackground white
 
   .content-item
     
@@ -293,7 +294,6 @@
     display flex
     flex-wrap nowrap
     flex-direction column
-    background white
     z-index 0
     padding-top 0
     xperspective 100px

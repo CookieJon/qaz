@@ -5,6 +5,9 @@
  * https://github.com/Alex-fun/vue-drag-and-drop-list#readme
  */
 'use strict'
+
+require('image-q')
+
 module.exports = class ColorUtils {
   constructor () {
     console.log('constructor')
@@ -14,6 +17,35 @@ module.exports = class ColorUtils {
 
   // Material Design color defaults
   //
+  static drawPixels (pointContainer, width0, width1) {
+    var idxi8 = pointContainer.toUint8Array()
+    var idxi32 = new Uint32Array(idxi8.buffer)
+
+    width1 = width1 || width0
+    var can = document.createElement('canvas')
+    var can2 = document.createElement('canvas')
+    var ctx = can.getContext('2d')
+    var ctx2 = can2.getContext('2d')
+    can.width = width0
+    can.height = Math.ceil(idxi32.length / width0)
+    can2.width = width1
+    can2.height = Math.ceil(can.height * width1 / width0)
+    ctx.imageSmoothingEnabled = ctx.mozImageSmoothingEnabled = ctx.webkitImageSmoothingEnabled = ctx.msImageSmoothingEnabled = false
+    ctx2.imageSmoothingEnabled = ctx2.mozImageSmoothingEnabled = ctx2.webkitImageSmoothingEnabled = ctx2.msImageSmoothingEnabled = false
+    var imgd = ctx.createImageData(can.width, can.height)
+    // if (QuantizationUsage._typeOf(imgd.data) == 'CanvasPixelArray') {
+    //   var data = imgd.data
+    //   for (var i = 0, len = data.length; i < len; ++i) {
+    //     data[i] = idxi8[i]
+    //   }
+    // } else {
+    var buf32 = new Uint32Array(imgd.data.buffer)
+    buf32.set(idxi32)
+    // }
+    ctx.putImageData(imgd, 0, 0)
+    ctx2.drawImage(can, 0, 0, can2.width, can2.height)
+    return can2
+  }
 
   static getMaterialColors (number) {
     var materialJSON = {

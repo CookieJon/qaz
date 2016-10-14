@@ -5,21 +5,20 @@
 
 .frame.frame-type-grid
   padding 5px
-  background-color #f0f0f0
+  xbackground-color #f0f0f0
 
 .frame.frame-type-grid > .frame
   xwidth 220px
-  xheight 100px
+  width 100%
   position relative
   margin 5px
   float left
   min-height 48px
-  border-bottom 1px solid rgba(0,0,0,0.1)
-  background white
-  border-left 2px solid orange
+  border-left 4px solid #2196F3
   box-shadow 0 3px 6px 3px rgba(1,1,1,0.4)
-  background-color rgba(255, 255, 255, 1)
-  box-shadow 3px 3px 5px rgba(0, 0, 0, 0.1)
+  background-color rgba(33, 150, 243, 0)
+  background-color white
+  box-shadow 4px 4px 2px rgba(0, 0, 0, 0.3)
   z-index 10
   padding 8px
 
@@ -30,8 +29,16 @@
 
 .frame.frame-type-grid > .frame > canvas
   display inline-block
+  margin 0
+  padding 0
+
+ .frame.frame-type-grid > .frame > canvas.image 
   width 120px
   height 120px
+
+ .frame.frame-type-grid > .frame > canvas.palette 
+  width 60px
+  height 60px
 
 .item-label 
   position absolute

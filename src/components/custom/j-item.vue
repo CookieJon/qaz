@@ -2,7 +2,7 @@
 <template>
     <div class='frame'>
       <img v-el:src :src="item" class='frame' @load='onImgLoad' width='256' height='256' />
-      <canvas v-el:dest class='f' width='256' height='256'></canvas>
+      <canvas v-el:dest class='image' width='256' height='256'></canvas>
       <div class='item-label'>
         <div>Bitmap Label</div>
         <div>sub label</div>
@@ -39,7 +39,7 @@
 
         // * material colors
         //
-        var targetColors = 147
+        var targetColors = 111
         var materialColors = ColorUtils.getMaterialColors(targetColors)
 
         // * iq.palette <= material colors
@@ -75,6 +75,12 @@
           imageData.data[i] = uint8array[i]
         }
         canvas.getContext('2d').putImageData(imageData, 0, 0)
+
+        // draw palette
+        //
+        var paletteCanvas = ColorUtils.drawPixels(iqPalette.getPointContainer(), 16, 64)
+        paletteCanvas.className = 'palette'
+        this.$el.appendChild(paletteCanvas)
       }
     }
   }
