@@ -39,8 +39,11 @@
 
         // * material colors
         //
-        var targetColors = 111
-        var materialColors = ColorUtils.getMaterialColors(targetColors)
+        var colorFrom = parseInt(Math.random() * 150)
+        var colorTo = parseInt(Math.random() * 150) + 151
+        colorFrom = 0
+        colorTo = 255
+        var materialColors = ColorUtils.getMaterialColors(colorFrom, colorTo)
 
         // * iq.palette <= material colors
         var iqPalette = new iq.utils.Palette()
@@ -78,7 +81,7 @@
 
         // draw palette
         //
-        var paletteCanvas = ColorUtils.drawPixels(iqPalette.getPointContainer(), 16, 64)
+        var paletteCanvas = ColorUtils.drawPixels(iqPalette.getPointContainer(), 16, 32)
         paletteCanvas.className = 'palette'
         this.$el.appendChild(paletteCanvas)
       }

@@ -47,7 +47,7 @@ module.exports = class ColorUtils {
     return can2
   }
 
-  static getMaterialColors (number) {
+  static getMaterialColors (startIndex, endIndex) {
     var materialJSON = {
       // Material Palette:
       // 16 x 10 + 4 hues
@@ -353,7 +353,8 @@ module.exports = class ColorUtils {
         '500': '#FFFFFF'
       }
     }
-    var _number = (number === undefined) ? 256 : number
+    var _startIndex = (startIndex === undefined) ? 0 : startIndex
+    var _endIndex = (endIndex === undefined) ? 255 : endIndex
     // prepare the raw Material Design (hex) colors
     var materialColors = []
     for (var group in materialJSON) {
@@ -364,7 +365,7 @@ module.exports = class ColorUtils {
         materialColors.push(rgba)
       }
     }
-    return materialColors.slice(0, _number)
+    return materialColors.slice(_startIndex, _endIndex)
   }
 
   // COLOR SPACE CONVERTERS

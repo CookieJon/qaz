@@ -3,65 +3,69 @@
 
 
 
+.ui-resizable
+  position absolute
+
 .frame.frame-type-grid
   padding 5px
   xbackground-color #f0f0f0
 
 .frame.frame-type-grid > .frame
-  xwidth 220px
-  width 100%
+  width 30%
+  height auto
   position relative
   margin 5px
   float left
   min-height 48px
-  border-left 4px solid #2196F3
+  xborder-left 4px solid #2196F3
   box-shadow 0 3px 6px 3px rgba(1,1,1,0.4)
   background-color rgba(33, 150, 243, 0)
   background-color white
   box-shadow 4px 4px 2px rgba(0, 0, 0, 0.3)
   z-index 10
-  padding 8px
+  padding 0px
 
 .frame.frame-type-grid > .frame > img
   display none
-  width 128px
-  height 128px
+  width 100%
+  height 11px
 
 .frame.frame-type-grid > .frame > canvas
   display inline-block
   margin 0
   padding 0
 
- .frame.frame-type-grid > .frame > canvas.image 
-  width 120px
-  height 120px
+ .frame.frame-type-grid > .frame > canvas.image
+  width 100%
 
- .frame.frame-type-grid > .frame > canvas.palette 
-  width 60px
-  height 60px
-
-.item-label 
+ .frame.frame-type-grid > .frame > canvas.palette
   position absolute
-  padding 4px
-  top 88px
-  height 40px
-  width 120px
+  width 24%
+  height 24%
+  right 6px
+  box-shadow 4px 4px 2px rgba(0, 0, 0, 0.3)
+  margin-top -30%
+  background white
+
+
+.item-label
+  position absolute
+  height 30%
+  padding 2px
+  margin-top -30%
+  width 100%
   color white
   font-size .8rem
-  xfont-weight bold
   background-color  rgba(0, 0, 0, .35)
 
 .sortable-ghost
   opacity 0.1
   z-index 0
-  border 4px solid red
 
 .sortable-chosen
-  xborder 2px solid green
   box-shadow 10px 10px 25px rgba(0, 0, 0, 1)
 
 .sortable-drag
-  border 4px solid blue
   box-shadow 10px 10px 25px rgba(0, 0, 0, 1)
 
 </style>

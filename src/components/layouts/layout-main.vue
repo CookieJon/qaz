@@ -9,8 +9,8 @@
         <i>menu</i>
       </button>
       <quasar-toolbar-title :padding="3">
-        quaZ-APP!      
-     
+        quaZ-APP!
+
       </quasar-toolbar-title>
 
       <button>
@@ -20,9 +20,9 @@
         <i>alarm</i>
       </button>
     </div>
---> 
+-->
 
-     <!-- Navigation Tabs 
+     <!-- Navigation Tabs
      <quasar-tabs slot="navigation" class="bg-secondary text-white">
       <quasar-tab icon="mail" v-link="{path: '/view-panels', exact: true}">Panels</quasar-tab>
       <quasar-tab icon="alarm" v-link="{path: '/view-sortable', exact: true}">Sortable</quasar-tab>
@@ -39,15 +39,15 @@
         <quasar-small-fab class="white" @click="this.openModal()">mail</quasar-small-fab>
         <quasar-small-fab class="white" @click="toast('alarm')">alarm</quasar-small-fab>
       </quasar-fab>
-      
+
    <div class="column items-bottom"  v-bind:style="{'background-image': selectedBg}" style="bottom: 100px; z-index:0;">
     </div>
 
-     
+
       <!-- <div class="layout-view no-scroll">keep-alive>-->
       <router-view keep-alive> </router-view>
-      
-      
+
+
   </quasar-layout>
 </template>
 
@@ -58,9 +58,8 @@
   export default {
     data () {
       return {
-        'selectedBg': 0,
+        'selectedBg': '/statics/img/resource/bg/bg2.png',
         'bgs': [
-          '/statics/img/resource/bg/bg1.png',
           '/statics/img/resource/bg/bg2.png',
           '/statics/img/resource/bg/bg3.png',
           '/statics/img/resource/bg/bg4.png',
@@ -116,7 +115,7 @@
 </script>
 
 <style lang="css">
-  
+
 .ripple {
   position: absolute;
   background: rgba(0,0,0,.25);

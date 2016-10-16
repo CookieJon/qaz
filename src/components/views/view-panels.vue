@@ -14,71 +14,52 @@
     <!-- your content -->
     <div class="layout-padding">
 
+      <!-- PANEL :: DEBUG -->
+      <j-panel title='Debug'>
+        <pre slot="content" class='text-white'>{{ $data | json 2 }}</pre>
+      </j-panel>
+
+
+      <j-panel
+        title="Bitmap Detail"
+        icon="upload"
+        >
+        <div slot="content">
+          <quasar-range :model.sync="number" :min="1" :max="1000" class='rotate-90'></quasar-range>
+        </div>
+      </j-panel>
+
       <!-- PANEL :: BITMAPS -->
       <j-panel
         title="Bitmaps"
         icon="business"
         >
-         
-
-          <!-- content 
-           <div slot="header" class='j-panel-toolbar'>Header toolbar</div>
-           
-          <div slot="content" class='j-panel-toolbar'>
-            <span class="title">Bitmaps : Content Toolbar</span>
-          </div>
-
-          <div slot="content" class="j-panel-toolbar">
-            <i class="item-primary">face</i>
-            <i class="item-primary">extension</i>
-          </div>
-
-          <div slot="content" class="j-panel-item scroll expand" style="height: 100px;">
-
-          </div>
-          -->
-
           <div slot="content" class="j-tray area panel-item-grow">
             <j-collection
               :model="gallery"
               :options=""
             ></j-collection>
           </div>
-<!--
+      </j-panel>
 
-          <j-frame
-            :collection="
-              {
-                model: gallery,
-                views: ['tile', '']
-              }",
-            :sortable="
-              {
-
-              }"
-            :draggable
-            
-            :resizable
-
-          }"
--->
-
-     
+      <!-- PANEL :: BITMAPS -->
+      <j-panel
+        title="Bitmaps"
+        icon="business"
+        >
+          <div slot="content" class="j-tray area panel-item-grow">
+            <j-collection
+              :model="gallery"
+              :options=""
+            ></j-collection>
+          </div>
       </j-panel>
 
 
-      <!-- PANEL :: LEVER -->
-      <j-panel title='Debug'>
-        <
-      </j-panel>
-     
-     
-      <!-- PANEL :: DEBUG -->
-      <j-panel title='Debug'>
-        <pre>{{ $data | json 2 }}</pre>
-      </j-panel>
 
-   
+
+
+
     </div><!-- your content -->
 
   </div><!-- root node required -->
@@ -132,7 +113,11 @@ export default {
         '/statics/img/resource/bg/more1.png',
         '/statics/img/resource/bg/more2.png',
         '/statics/img/resource/bg/bg2.png',
-        '/statics/img/resource/bg/bg10.png'
+        '/statics/img/resource/bg/bg10.png',
+        '/statics/img/resource/bg/bitmap1.bmp',
+        '/statics/img/resource/bg/bitmap2.bmp',
+        '/statics/img/resource/bg/bitmap3.bmp',
+        '/statics/img/resource/bg/bitmap4.bmp'
       ],
       'chipsArray': [],
       'test_range': { min: 10, max: 90 },

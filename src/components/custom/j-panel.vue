@@ -230,28 +230,28 @@
   @import '../../themes/app.variables.styl'
 
   .ui-draggable-handle
-   cursor pointer
+    cursor grab
+  .ui-draggable-handle:active
+    cursor grabbing
 
   .j-panel
-    xborder 6px dotted red
     position absolute
     overflow hidden
     display flex
     flex-wrap nowrap
     flex-direction column
-    zjustify-content flex-start
+    justify-content flex-start
     align-items stretch
     align-content flex-start
     zbackground-clip border-box
     min-width 250px
-    // border-top-left-radius 6px
-    // border-top-right-radius 6px
-    xbox-shadow 0 3px 6px 3px rgba(1,1,1,0.4)
+    border-top-left-radius 2px
+    border-top-right-radius 2px
+    box-shadow 0 3px 6px 3px rgba(1,1,1,0.4)
     transition box-shadow .2s ease-in-out 0s
     z-index 5
     width 100%
     background-color rgba(96, 125, 139, 0.0)
-    box-shadow 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6)
 
   .j-panel-header
     xborder 4px dotted orange
@@ -286,7 +286,7 @@
     xbackground white
 
   .content-item
-    
+
   .panel-item-grow
     xborder 4px dotted red
     overflow hidden
