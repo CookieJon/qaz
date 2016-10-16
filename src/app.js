@@ -9,10 +9,10 @@ import Quasar from 'quasar'
 import Router from './router'
 
 // Jon Custom additions
-// import VueDragAndDropList from 'vue-drag-and-drop-list'
 import MaterialGoodies from './material-goodies.js'
-
 import Sortable from 'vue-sortable'
+import Store from './store/store'
+
 // Theme
 //
 require('./themes/app.' + __THEME + '.styl') // <-- Option 1. Override Quasar (custom styles/slower)
@@ -35,5 +35,5 @@ Vue.use(Sortable)
 // Start Quasar in '#quasar-app'
 //
 Quasar.start(() => {
-  Router.start(Vue.extend({}), '#quasar-app')
+  Router.start(Vue.extend({store: Store}), '#quasar-app')
 })

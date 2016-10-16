@@ -3,7 +3,7 @@
   .upload-zone {
     position:relative;
     overflow:hidden;
-    width:100%; 
+    width:100%;
     height:300px;
     background:transparent;
     border:2px dashed #333;
@@ -17,7 +17,7 @@
     display:none;
   }
 
-  .upload-zone img{
+  .upload-zone img {
     position:absolute;
     width:312px;
     height:362px;
@@ -39,13 +39,13 @@
       @drop.stop.prevent="doDrop"
     >
       Drag imgs here
-      <img 
-        v-el:img 
-        id="photo" 
-        src="" 
+      <img
+        v-el:img
+        id="photo"
+        src=""
       />
     </div>
-    <input 
+    <input
       type="file"
       v-el:fileinput
       class="file-upload"

@@ -2,7 +2,7 @@
 
   <!-- j-panel -->
   <div
-    class='j-panel non-selectable xitem-collapsible xshadow-transition xhoverable-5'
+    class='j-panel non-selectable item-collapsible xshadow-transition xhoverable-5'
     v-bind:style='computedStyle'
   >
     <!-- j-panel-header -->
@@ -19,7 +19,10 @@
 
       <!-- user toolbars -->
       <slot name="header">
-        <!-- <div class='j-panel-toolbar'></div> -->
+        <div class='j-panel-toolbar text-black' style='padding:4px;'>
+          <button class="circular primary small" @click='onClick'><i>mail</i></button>
+          <button class="circular small" @click='onClick'><i>mail</i></button>
+        </div>
       </slot>
 
     </div>
@@ -51,6 +54,7 @@
 
 <script>
   var _static = require('./j-panel-static.js')
+  import '../../store/actions'
   var $ = require('jquery')
   require('malihu-custom-scrollbar-plugin')
   require('jquery-mousewheel')
@@ -63,11 +67,11 @@
   // require('jquery-ui-touch-punch')
   export default {
     props: {
-      title: {
-        type: String
-      },
-      x: {type: Number, default: 88},
-      y: {type: Number, default: 88},
+      title: { type: String },
+      width: { type: Number, default: 240, coerce: Number },
+      height: { type: Number, default: 460, coerce: Number },
+      x: { type: Number, default: 10, coerce: Number },
+      y: { type: Number, default: 10, coerce: Number },
       expanded: {
         type: Boolean,
         default: true,
@@ -113,8 +117,8 @@
       computedStyle () {
         var s = this.style
         return {
-          x: s.x,
-          y: s.y,
+          left: s.x + 'px',
+          top: s.y + 'px',
           width: s.width + 'px',
           height: this.expanded ? s.height + 'px' : '45px',
           'z-index': this.order
@@ -125,7 +129,10 @@
       _static._panels.push(this)
       _static._panelCount++
       _static._currentPanel = this
-      this.style.x = _static._panels.length * 200
+      this.style.x = this.x
+      this.style.y = this.y
+      this.style.width = this.width
+      this.style.height = this.height
       this._static = _static
       this.order = _static._panels.length - 1
       this.id = 'Panel-00' + _static._panelCount
@@ -171,10 +178,16 @@
           stop: function (event, ui) {
             $el.removeClass('shadow-4')
             $el.addClass('shadow-2')
+            vm.style.x = ui.offset.left
+            vm.style.y = ui.offset.top
           }
         })
     },
     methods: {
+      onClick (e) {
+        this.$store.dispatch('addBitmap')
+        console.log('panel toolbar click', e)
+      },
       toggle () {
         this.expanded = !this.expanded
         console.log(this.computedStyle)
@@ -199,6 +212,10 @@
 </script>
 
 <style>
+.mCSB_inside > .mCSB_container {
+  margin:0;
+}
+
   .ripple {
     position: absolute;
     background: rgba(0,0,0,.25);
@@ -267,7 +284,7 @@
     display flex
     flex-wrap nowrap
     flex-direction column
-    background-color rgba(255, 255, 255, 0.2)
+    background-color rgba(255, 255, 255, 0.35)
     z-index 0
     padding-top 0
     xperspective 100px
@@ -340,6 +357,10 @@
     -moz-osx-font-smoothing: grayscale;
     /* Support for IE. */
     font-feature-settings: 'liga';
+
+  & > .btn.circular.small
+    width 32px
+    height 32px
 
   &.j-panel-title
     background $primary

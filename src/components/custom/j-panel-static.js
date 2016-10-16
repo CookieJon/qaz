@@ -4,7 +4,9 @@ module.exports = {
   _baseZIndex: 10,
   _panelCount: 0, // Total ever created
   _panels: [],
-  _currentPanel: null
+  _currentPanel: null,
+  _minX: 10,
+  _minY: 10
 }
 
 // exports.client = client

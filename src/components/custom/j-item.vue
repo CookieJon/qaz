@@ -1,10 +1,11 @@
 
 <template>
-    <div class='frame'>
-      <img v-el:src :src="item" class='frame' @load='onImgLoad' width='256' height='256' />
+    <!-- item is just "Bitmap" at the moment... make generic later -->
+    <div class='frame' @click='onClick'>
+      <img v-el:src :src="item.src" class='frame' @load='onImgLoad' width='256' height='256' />
       <canvas v-el:dest class='image' width='256' height='256'></canvas>
       <div class='item-label'>
-        <div>Bitmap Label</div>
+        <div><input v-bind:id="'item.id" v-bind:value="item.name" v-on:input="onInput"></div>
         <div>sub label</div>
       </div>
     </div>
@@ -12,6 +13,7 @@
 
 <script>
   var iq = require('image-q')
+  import { addBitmap } from '../../store/actions'
   var ColorUtils = require('../../moe/utils/moe.utils.color.js')
   console.log(ColorUtils)
   export default {
@@ -20,12 +22,18 @@
         ctx: null
       }
     },
-    props: ['item'],
+    props: ['item', 'value'],
     components: {},
     ready () {
       this.imageData = this.$els.dest.getContext('2d').getImageData(0, 0, 255, 255)
     },
     methods: {
+      onInput: function (event) {
+        this.$emit('input', event.target.value)
+      },
+      onClick () {
+        console.log(addBitmap)
+      },
       onImgLoad () {
         //
         var img = this.$els.src
